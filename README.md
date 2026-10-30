@@ -1,0 +1,61 @@
+# socratic-coach（苏格拉底提问教练）
+
+Grok Bot / Cursor skill：在想法混乱、目标不清或疑似 XY 问题时，用 **5 Whys** 与 **黄金公式** 把「乱问」炼成「该问的那一句」。
+
+**终点是高水平问题，不是可动手方案。** 核心需求锁死前禁止抢答与半评手段 Y。
+
+曾用 id：`socratic-question-coach`（已 rename，见 [CHANGELOG](./CHANGELOG.md)）。
+
+## 与 grill-me 的定位
+
+| | **socratic-coach** | **grill-me / grilling** |
+|---|---|---|
+| 用户带来的是 | 模糊意图 / 手段提问 / 意识流 | 一个要压实的计划或设计 |
+| 每轮问题 | 1–2 个**承重问**，不带方案推荐 | 可问满 frontier，且常带 ➡️ 推荐答案 |
+| 成功标准 | 黄金四段锁死 → **高水平问题句** | 设计树走完 + 共享理解 → **可动手方案** |
+| 锁死前 | 禁工具 / 代码 / 方案 / 半评 Y | 确认前不实现，但访谈中可推荐选项 |
+| 下游 | 只**点名** grill-me / brainstorming / Requirement / Coding | 常接 to-spec / 实现 / grill-with-docs |
+
+一句话：**grill-me 把「想法」烤成「可动手的方案」；本 skill 把「乱问」炼成「该问的那一句」。**
+
+需要拍板设计树时，本 skill **只建议切换 grill-me**，不在内部完成选型。
+
+## 触发
+
+- **自动**：`SKILL.md` frontmatter `description` 命中后可由 agent 加载（混乱 / 推荐工具 / XY /「脑子乱了」等）。
+- **口令（备选）**：`/苏格拉底`、`/问清楚`。
+
+语言：跟随用户当轮语言；不明确时用品牌 agent 默认语（未设置则中文）。语言只改表达，不改硬规则。
+
+## Install
+
+将本仓 `SKILL.md` 拷入 agent 的 skills/workflows 为 `socratic-coach/SKILL.md`，或通过 bot 的 skill 安装器导入。
+
+```text
+workflows/
+  socratic-coach/
+    SKILL.md
+```
+
+## 仓库结构
+
+| 路径 | 说明 |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | 可加载 skill 正文（硬规则、流程、模板、验收自检） |
+| [`docs/examples/`](./docs/examples/) | 示例对话（追问 / 草案 / 终稿） |
+| [`docs/uat-summary.md`](./docs/uat-summary.md) | UAT 摘要占位（完整报告见内部归档） |
+| [`CHANGELOG.md`](./CHANGELOG.md) | 版本与 rename 记录 |
+| [`LICENSE`](./LICENSE) | MIT |
+
+## 核心约定（摘要）
+
+1. 锁死前：禁工具/代码/方案推荐；禁半评 Y 利弊（即使用户追问）。
+2. 每轮 1–2 个承重问（会改变 Goal 或 Blocker）；可自查事实不占名额。
+3. 黄金四段：Context / Goal(X) / Attempts / Blocker → 先【草案·未锁死】，用户确认后终稿。
+4. 终稿后不自动派下游、不自动加载下游 skill；只点名建议。
+
+完整规则与验收表 U1–U9 见 `SKILL.md`。
+
+## License
+
+MIT © 2026 SherryLi-vc

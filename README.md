@@ -6,7 +6,56 @@
 
 **终点是高水平问题，不是可动手方案。** 核心需求锁死前禁止抢答与半评手段 Y。
 
-曾用 id：`socratic-question-coach`（已 rename，见 [CHANGELOG](./CHANGELOG.md)）。
+### How it differs from grill-me
+| | **socratic-coach** | **grill-me / grilling** |
+|---|---|---|
+| What the user brings | A vague goal, a means-focused question, or a stream of thoughts | A plan or design that needs to be made concrete |
+| Questions per turn | 1–2 high-leverage questions, without solution recommendations | Can explore the full decision frontier and often recommend options |
+| Success looks like | Four core elements clarified → a precise problem statement | Design decisions resolved and shared understanding reached → an actionable plan |
+| Before confirmation | No tools, code, solutions, or partial pros-and-cons of a proposed Y | No implementation before confirmation, though options may be discussed during discovery |
+| Handoff | Names a next skill such as grill-me, brainstorming, Requirements, or Coding; does not launch it | Often continues into specification, implementation, or grill-with-docs |
+In short: **grill-me turns an idea into an actionable plan; socratic-coach turns a muddled question into the right question.** When design choices need to be made, socratic-coach recommends switching to grill-me instead of making those choices itself.
+### Use socratic-coach before grill-me
+The recommended flow is **Socratic clarification first, grill-me second**:
+1. If the idea is still unclear—or the conversation starts with “recommend a tool”—use socratic-coach to distill the real problem into one sentence.
+2. The final response ends with a clear “Round complete” notice and recommends grill-me as the default next step.
+3. Take that clarified problem to grill-me to make design decisions and shape an actionable plan.
+Skipping the first step can produce a very detailed answer to the wrong question. If the problem is already clear, you can go straight to grill-me.
+### Triggers
+- **Automatic:** An agent may load the skill when the `SKILL.md` frontmatter description matches signals such as confusion, tool recommendations, XY problems, or “my thoughts are a mess.”
+- **Optional commands:** `/苏格拉底` and `/问清楚`.
+### Language
+The skill follows the language used in the current conversation. If that is unclear, it uses the agent’s configured default language, falling back to Chinese. Language changes only the wording, not the underlying rules.
+### Install
+Copy this repository’s `SKILL.md` into the agent’s skills/workflows directory as `socratic-coach/SKILL.md`, or import it with your bot’s skill installer.
+```text
+workflows/
+  socratic-coach/
+    SKILL.md
+```
+### Repository structure
+| Path | Description |
+|---|---|
+| [`SKILL.md`](./SKILL.md) | Loadable skill instructions, including rules, workflow, templates, and self-checks |
+| [`docs/examples/`](./docs/examples/) | Example conversations: follow-up questions, drafts, and final versions |
+| [`docs/uat-summary.md`](./docs/uat-summary.md) | UAT summary placeholder; the full report is archived internally |
+| [`CHANGELOG.md`](./CHANGELOG.md) | Version and rename history |
+| [`LICENSE`](./LICENSE) | MIT License |
+### Core behavior at a glance
+1. Before the core need is confirmed: no tools, code, solution recommendations, or partial pros-and-cons of a proposed Y—even if asked.
+2. Ask 1–2 high-leverage questions per turn: each must be able to change the Goal or Blocker. Self-checkable facts do not count toward the limit.
+3. Clarify four elements—Context, Goal, Attempts, and Blocker. Present a **draft, not yet locked** first; provide the final version after the user confirms it.
+4. End each turn with a progress line so the user can see what remains.
+5. End the final response with **Round complete**: state that clarification is done, recommend grill-me by default, and mention other downstream skills as alternatives. Never launch another skill or load it automatically.
+6. Match user-facing labels and terminology to the conversation language. In Chinese conversations, do not mix in English labels.
+
+7. ## License
+
+MIT © 2026 SherryLi-vc
+
+The complete rules and U1–U12 acceptance checklist are in [`SKILL.md`](./SKILL.md).
+### License
+MIT © 2026 SherryLi-vc
 
 ## 与 grill-me 的定位
 
@@ -70,52 +119,3 @@ workflows/
 
 完整规则与验收表 U1–U12 见 `SKILL.md`。
 
-## License
-
-MIT © 2026 SherryLi-vc
-## English
-### How it differs from grill-me
-| | **socratic-coach** | **grill-me / grilling** |
-|---|---|---|
-| What the user brings | A vague goal, a means-focused question, or a stream of thoughts | A plan or design that needs to be made concrete |
-| Questions per turn | 1–2 high-leverage questions, without solution recommendations | Can explore the full decision frontier and often recommend options |
-| Success looks like | Four core elements clarified → a precise problem statement | Design decisions resolved and shared understanding reached → an actionable plan |
-| Before confirmation | No tools, code, solutions, or partial pros-and-cons of a proposed Y | No implementation before confirmation, though options may be discussed during discovery |
-| Handoff | Names a next skill such as grill-me, brainstorming, Requirements, or Coding; does not launch it | Often continues into specification, implementation, or grill-with-docs |
-In short: **grill-me turns an idea into an actionable plan; socratic-coach turns a muddled question into the right question.** When design choices need to be made, socratic-coach recommends switching to grill-me instead of making those choices itself.
-### Use socratic-coach before grill-me
-The recommended flow is **Socratic clarification first, grill-me second**:
-1. If the idea is still unclear—or the conversation starts with “recommend a tool”—use socratic-coach to distill the real problem into one sentence.
-2. The final response ends with a clear “Round complete” notice and recommends grill-me as the default next step.
-3. Take that clarified problem to grill-me to make design decisions and shape an actionable plan.
-Skipping the first step can produce a very detailed answer to the wrong question. If the problem is already clear, you can go straight to grill-me.
-### Triggers
-- **Automatic:** An agent may load the skill when the `SKILL.md` frontmatter description matches signals such as confusion, tool recommendations, XY problems, or “my thoughts are a mess.”
-- **Optional commands:** `/苏格拉底` and `/问清楚`.
-### Language
-The skill follows the language used in the current conversation. If that is unclear, it uses the agent’s configured default language, falling back to Chinese. Language changes only the wording, not the underlying rules.
-### Install
-Copy this repository’s `SKILL.md` into the agent’s skills/workflows directory as `socratic-coach/SKILL.md`, or import it with your bot’s skill installer.
-```text
-workflows/
-  socratic-coach/
-    SKILL.md
-```
-### Repository structure
-| Path | Description |
-|---|---|
-| [`SKILL.md`](./SKILL.md) | Loadable skill instructions, including rules, workflow, templates, and self-checks |
-| [`docs/examples/`](./docs/examples/) | Example conversations: follow-up questions, drafts, and final versions |
-| [`docs/uat-summary.md`](./docs/uat-summary.md) | UAT summary placeholder; the full report is archived internally |
-| [`CHANGELOG.md`](./CHANGELOG.md) | Version and rename history |
-| [`LICENSE`](./LICENSE) | MIT License |
-### Core behavior at a glance
-1. Before the core need is confirmed: no tools, code, solution recommendations, or partial pros-and-cons of a proposed Y—even if asked.
-2. Ask 1–2 high-leverage questions per turn: each must be able to change the Goal or Blocker. Self-checkable facts do not count toward the limit.
-3. Clarify four elements—Context, Goal, Attempts, and Blocker. Present a **draft, not yet locked** first; provide the final version after the user confirms it.
-4. End each turn with a progress line so the user can see what remains.
-5. End the final response with **Round complete**: state that clarification is done, recommend grill-me by default, and mention other downstream skills as alternatives. Never launch another skill or load it automatically.
-6. Match user-facing labels and terminology to the conversation language. In Chinese conversations, do not mix in English labels.
-The complete rules and U1–U12 acceptance checklist are in [`SKILL.md`](./SKILL.md).
-### License
-MIT © 2026 SherryLi-vc

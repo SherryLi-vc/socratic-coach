@@ -4,7 +4,11 @@
 
 ### Changed
 
-- README 开场定位改为通用 AI Agent Skill（任意能加载 SKILL.md 的 agent），不再点名具体产品。
+- README 拆分为英文 README.md 和中文 README.zh-CN.md，并加入已核实的跨平台安装说明。
+- 术语统一为「黄金四段」（背景 / 目标 / 已尝试 / 卡点），替换 README、description 与正文里的「黄金圈 / Golden Circle / 黄金公式」。
+- SKILL.md 改用宿主中立措辞（行为不变），并添加 license frontmatter。
+- 修复 README 粗体格式和重复的 License 内容。
+- 清理文档中的 U1–U12 编号和内部路径。
 
 ## [0.2.0] — 2026-10-30
 
@@ -21,15 +25,14 @@
 ### Renamed
 
 - Skill id：`socratic-question-coach` → **`socratic-coach`**
-- 本地路径：`/home/box/agent-data/workflows/socratic-coach/SKILL.md`
-- 历史方案 / UAT 仍归档在 `/workspace/socratic-question-coach/`（见该目录 `INDEX.md`，索引已改指新 id）
+- 本地路径与历史方案 / UAT 归档为内部信息，未随公开仓发布
 
 ### Added
 
 - 公开仓最小骨架：README（vs grill-me）、MIT、示例对话、触发说明、UAT 摘要占位
 - 硬规则加固：P0-1 可自查不占问名额；P0-2 只问承重问 / 早停；P0-3 锁死前禁半评 Y
 - 验收自检扩至 U1–U9
-- 语言：跟随用户当轮语言；不明则品牌默认语（未设置则中文）——已去掉五语种对照表
+- 语言：跟随用户当轮语言；不明则 agent 默认语言（未设置则中文）——已去掉五语种对照表
 
 ### Notes
 

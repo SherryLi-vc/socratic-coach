@@ -1,8 +1,8 @@
 # socratic-coach（苏格拉底提问教练） / Socratic Coach
 
-**中文｜**通用的 AI Agent Skill，适用于任何能加载 SKILL.md 的 AI agent。当目标模糊、思路混乱或出现 XY 问题时，通过苏格拉底式追问、5 Whys 与黄金圈，逐步澄清背景、目标、已尝试和卡点。它每轮只问 1–2 个承重问题，在核心需求确认前不抢答、不推荐工具或方案，最终帮助用户形成一句高质量的问题定义。
+**中文｜**通用的 AI Agent Skill，适用于任何能加载 `SKILL.md` 的 AI agent。当目标模糊、思路混乱或出现 XY 问题时，通过苏格拉底式追问、5 Whys 与黄金圈，逐步澄清背景、目标、已尝试和卡点。它每轮只问 1–2 个承重问题，在核心需求确认前不抢答、不推荐工具或方案，最终帮助用户形成一句高质量的问题定义。
 
-**English｜**A general-purpose AI agent skill for any agent that can load a SKILL.md. When a goal is vague, thinking is tangled, or an XY problem appears, it uses Socratic questioning, the 5 Whys, and the Golden Circle to clarify context, goals, attempts, and blockers. It asks only 1–2 high-leverage questions per turn and avoids jumping to tools or solutions before the core need is confirmed. The outcome is a clear, high-quality problem statement—ready for the next step, not a premature solution.
+**English｜**A general-purpose AI agent skill for any agent that can load a `SKILL.md`. When a goal is vague, thinking is tangled, or an XY problem appears, it uses Socratic questioning, the 5 Whys, and the Golden Circle to clarify context, goals, attempts, and blockers. It asks only 1–2 high-leverage questions per turn and avoids jumping to tools or solutions before the core need is confirmed. The outcome is a clear, high-quality problem statement—ready for the next step, not a premature solution.
 
 **终点是高水平问题，不是可动手方案。** 核心需求锁死前禁止抢答与半评手段 Y。
 

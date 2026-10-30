@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- README 开场定位改为通用 AI Agent Skill（任意能加载 SKILL.md 的 agent），不再点名具体产品。
+
 ## [0.2.0] — 2026-10-30
 
 ### Changed（真人测试反馈）

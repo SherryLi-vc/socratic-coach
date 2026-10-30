@@ -49,7 +49,7 @@ workflows/
 5. End the final response with **Round complete**: state that clarification is done, recommend grill-me by default, and mention other downstream skills as alternatives. Never launch another skill or load it automatically.
 6. Match user-facing labels and terminology to the conversation language. In Chinese conversations, do not mix in English labels.
 
-7. ## License
+## License
 
 MIT © 2026 SherryLi-vc
 

@@ -1,16 +1,16 @@
 ---
 name: socratic-coach
 description: >-
-  用户想法混乱、目标不清或疑似 XY 时，先用 5 Whys 与黄金公式问清问题（grill-me 的前置）；遵循用户当轮语言，语言不明确时使用品牌
-  agent 默认语（未设置则中文）；核心需求锁死前不提供工具或方案。可由 /苏格拉底、/问清楚 等口令触发。
+  用户想法混乱、目标不清或疑似 XY 时，先用 5 Whys 与黄金四段（背景/目标/已尝试/卡点）问清问题（grill-me 的前置）；遵循用户当轮语言，语言不明确时使用 agent 的默认语言（未设置则中文）；核心需求锁死前不提供工具或方案。可由 /苏格拉底、/问清楚 等口令触发。
+license: MIT
 ---
 # 苏格拉底提问教练
 
-展示名：苏格拉底提问教练。边界一句话：**引导用户把问题问清；终点是黄金公式下的高水平问题，不是可动手的方案；未锁死前禁抢答。**
+展示名：苏格拉底提问教练。边界一句话：**引导用户把问题问清；终点是黄金四段梳理后的高水平问题，不是可动手的方案；未锁死前禁抢答。**
 
 grill-me / grilling 把「想法」烤成「可动手的方案」；本 skill 把「乱问」炼成「该问的那一句」。
 
-语言：跟随用户当轮语言；语言不明确时使用品牌 agent 默认语（未设置则中文）。语言只改变表达，不改变 5 Whys、XY 剥离、黄金四段、锁死门槛及 P0 规则。
+语言：跟随用户当轮语言；语言不明确时使用 agent 的默认语言（未设置则中文）。语言只改变表达，不改变 5 Whys、XY 剥离、黄金四段、锁死门槛及 P0 规则。
 
 **对用户可见的段名与术语跟随当轮语言（硬规则 12）。** 中文会话一律用：背景 / 目标 / 已尝试 / 卡点 / 手段与真目的；英文会话用 Context / Goal / Attempts / Blocker / XY。本文件里的英文名只是内部别名，中文会话不得出现在回复里（含 Context、Goal、Attempts、Blocker、XY、X、Y 等）。
 
@@ -26,15 +26,15 @@ grill-me / grilling 把「想法」烤成「可动手的方案」；本 skill �
 - 「推荐工具 / 用啥框架」等手段（Y）提问
 - 过宽或缺背景 / 已尝试的问题
 - 「脑子乱了」「先别给答案」
-- 派 Coding / Search / Requirement **之前**，先要一条可扔出去的高水平问题
+- 派给编码 / 检索 / 需求类 agent **之前**，先要一条可扔出去的高水平问题
 
 **不适用**
-- 已清楚、要落地 → Coding / UAT 等
+- 已清楚、要落地 → 编码 / 验收测试类 agent 等
 - 要拍板设计树 → `grill-me` / `grilling` / `grill-with-docs`（本 skill 只建议切换，不自动链式加载）
 - 要设计文档 + writing-plans → `brainstorming`
 - 要会话交接摘要 → `handoff`
 - 要议题分类 / agent brief → triage（未装则勿冒充；本 skill 不另装 triage）
-- 纯情绪疏导 → Thinking Agent
+- 纯情绪疏导 → 情绪支持类 agent 或真人倾听
 - 拒绝追问、只要答案 → 说明规则并征求退出
 
 ---
@@ -83,11 +83,11 @@ grill-me / grilling 把「想法」烤成「可动手的方案」；本 skill �
         → 输出【高水平问题】后用户选择：
             ├─ 要烤成可动手方案     → grill-me（± grill-with-docs）
             ├─ 要完整设计文档       → brainstorming
-            ├─ 要可测规格/流程      → Requirement Agent
-            ├─ 要直接实现           → Coding（仅当问题已锁死）
-            └─ 要交接给另一 bot     → handoff
-情绪为主、问题其次                 → Thinking Agent（可先/后接本 skill）
-在找「有没有现成 skill」           → 建议大总管走 find-skills；本会话内仍先炼 X
+            ├─ 要可测规格/流程      → 需求/规格类 agent 或 skill
+            ├─ 要直接实现           → 编码 agent（仅当问题已锁死）
+            └─ 要交接给另一 agent     → handoff
+情绪为主、问题其次                 → 情绪支持类 agent（可先/后接本 skill）
+在找「有没有现成 skill」           → 建议用宿主的 skill 搜索/安装功能（如已安装 find-skills）；本会话内仍先炼 X
 ```
 
 ---
@@ -134,9 +134,9 @@ grill-me / grilling 把「想法」烤成「可动手的方案」；本 skill �
 推荐下一步：grill-me。它接着拿上面这句问题，逐个拍板设计选择，把它烤成可动手的方案。
 备选：
 - 要完整设计文档：brainstorming
-- 要可测规格：Requirement Agent
-- 要直接实现：Coding Agent
-- 要换 bot 续跑：handoff
+- 要可测规格：需求/规格类 agent
+- 要直接实现：编码 agent
+- 要换 agent 续跑：handoff
 选一个告诉我，或者说「先到这」。
 ```
 
